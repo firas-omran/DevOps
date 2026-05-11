@@ -98,12 +98,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=devops-traffic-platform
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.sources=backend/app,ml-service/app,frontend/src
-            -Dsonar.python.coverage.reportPaths=backend/coverage.xml,ml-service/coverage.xml
             -Dsonar.javascript.lcov.reportPaths=frontend/coverage/lcov.info
             -Dsonar.qualitygate.wait=true
 
