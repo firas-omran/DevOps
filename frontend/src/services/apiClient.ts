@@ -20,10 +20,6 @@ export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T
   }
 
   const endpoint = new URL(`${API_BASE}${normalizedPath}`, window.location.origin)
-  if (endpoint.origin !== window.location.origin && API_BASE.startsWith('/')) {
-    throw new ApiError(400, 'Invalid API origin')
-  }
-
   const res = await fetch(endpoint.toString(), init)
 
   if (!res.ok) {
