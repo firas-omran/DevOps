@@ -14,9 +14,9 @@ export const generatorApi = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }),
-  get: (id: string) => apiRequest<any>(`/generator/jobs/${id}`),
+  get: (id: string) => apiRequest<any>(`/generator/jobs/${encodeURIComponent(id)}`),
   stop: (id: string) =>
-    apiRequest<any>(`/generator/jobs/${id}/stop`, {
+    apiRequest<any>(`/generator/jobs/${encodeURIComponent(id)}/stop`, {
       method: 'POST',
     }),
 }

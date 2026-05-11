@@ -19,10 +19,10 @@ export const detectorsApi = {
       body: JSON.stringify(payload),
     }),
   update: (id: string, payload: Partial<DetectorPayload>) =>
-    apiRequest<any>(`/detectors/${id}`, {
+    apiRequest<any>(`/detectors/${encodeURIComponent(id)}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }),
-  remove: (id: string) => apiRequest<void>(`/detectors/${id}`, { method: 'DELETE' }),
+  remove: (id: string) => apiRequest<void>(`/detectors/${encodeURIComponent(id)}`, { method: 'DELETE' }),
 }

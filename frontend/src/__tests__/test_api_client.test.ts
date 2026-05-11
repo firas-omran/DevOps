@@ -22,7 +22,14 @@ describe('apiClient', () => {
     }))
 
     await expect(apiRequest<{ ok: boolean }>('detectors')).resolves.toEqual({ ok: true })
-    expect(fetchSpy).toHaveBeenCalledWith('/api/detectors', undefined)
+    expect(fetchSpy).toHaveBeenCalledWith('http://localhost/api/detectors', undefined)
+  })
+
+  test('apiRequest rejects unsafe paths', async () => {
+    await expect(apiRequest('//evil.test')).rejects.toMatchObject({
+      status: 400,
+      message: 'Invalid API path',
+    })
   })
 
   test('apiRequest returns undefined for 204 responses', async () => {

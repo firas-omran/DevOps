@@ -12,10 +12,7 @@ class Settings(BaseModel):
 
     ml_service_url: str = os.getenv('ML_SERVICE_URL', 'http://localhost:8001')
 
-    postgres_dsn: str = os.getenv(
-        'POSTGRES_DSN',
-        'postgresql://traffic:traffic@localhost:5432/traffic',
-    )
+    postgres_dsn: str = os.getenv('POSTGRES_DSN', '')
 
 
 settings = Settings()

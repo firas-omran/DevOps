@@ -79,14 +79,14 @@ describe('lab1 user flows', () => {
     fireEvent.click(screen.getByRole('button', { name: /Save detector/i }))
 
     await screen.findByText(/Spike detector/)
-    expect(fetchSpy).toHaveBeenCalledWith('/api/detectors', expect.objectContaining({ method: 'POST' }))
+    expect(fetchSpy).toHaveBeenCalledWith('http://localhost/api/detectors', expect.objectContaining({ method: 'POST' }))
 
     const spikeDetectorEntry = screen.getByText(/Spike detector/).closest('li')
     expect(spikeDetectorEntry).not.toBeNull()
     fireEvent.click(within(spikeDetectorEntry as HTMLElement).getByRole('button', { name: 'Archive' }))
 
     await waitFor(() =>
-      expect(fetchSpy).toHaveBeenCalledWith('/api/detectors/det-2', { method: 'DELETE' }),
+      expect(fetchSpy).toHaveBeenCalledWith('http://localhost/api/detectors/det-2', { method: 'DELETE' }),
     )
   })
 
@@ -145,7 +145,7 @@ describe('lab1 user flows', () => {
 
     await screen.findByText('run-1')
     expect(screen.getByText('0.92')).toBeInTheDocument()
-    expect(fetchSpy).toHaveBeenCalledWith('/api/detections/run', expect.objectContaining({ method: 'POST' }))
+    expect(fetchSpy).toHaveBeenCalledWith('http://localhost/api/detections/run', expect.objectContaining({ method: 'POST' }))
   })
 
   test('monitoring page refreshes traffic and anomaly widgets using detector filter', async () => {
@@ -191,9 +191,9 @@ describe('lab1 user flows', () => {
 
     await screen.findByText(/sensor-1/)
     await screen.findByText(/res-1 - score 0.88 - anomaly true/)
-    expect(fetchSpy).toHaveBeenCalledWith('/api/traffic/latest', undefined)
+    expect(fetchSpy).toHaveBeenCalledWith('http://localhost/api/traffic/latest', undefined)
     expect(fetchSpy).toHaveBeenCalledWith(
-      '/api/anomalies/latest?detector_profile_id=det-42',
+      'http://localhost/api/anomalies/latest?detector_profile_id=det-42',
       undefined,
     )
   })

@@ -13,6 +13,6 @@ export const detectionsApi = {
         ? `/detections?detector_profile_id=${encodeURIComponent(detectorProfileId)}`
         : '/detections',
     ),
-  get: (id: string) => apiRequest<any>(`/detections/${id}`),
-  results: (id: string) => apiRequest<{ results: any[] }>(`/detections/${id}/results`),
+  get: (id: string) => apiRequest<any>(`/detections/${encodeURIComponent(id)}`),
+  results: (id: string) => apiRequest<{ results: any[] }>(`/detections/${encodeURIComponent(id)}/results`),
 }
